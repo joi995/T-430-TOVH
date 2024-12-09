@@ -1,0 +1,7 @@
+{# node--advertisement.html.twig #}
+
+{% set selected_style = content.field_image_style.0['#markup'] %}
+{% set image_uri = content.field_advertisement_image.0['#item'].entity.uri.value %}
+
+{{ image_uri|image_style(selected_style) }}
+

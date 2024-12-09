@@ -1,0 +1,5 @@
+name: My Olivero Subtheme
+type: theme
+description: 'A subtheme of Olivero.'
+core_version_requirement: ^10 || ^9
+base theme: olivero

@@ -1,0 +1,13 @@
+{# node--advertisement.html.twig #}
+
+{# Get the selected style from the field_image_style field #}
+{% set selected_style = content.field_image_style.0['#markup'] %}
+
+{# Get the image URI from the field_advertisement_image field #}
+{% set image_uri = content.field_advertisement_image.0['#item'].entity.uri.value %}
+
+{# Print the image styled with the chosen style (requires Twig Tweak) #}
+{{ image_uri|image_style(selected_style) }}
+
+{{ dump(content.field_advertisement_image) }}
+{{ dump(content.field_image_style) }}
