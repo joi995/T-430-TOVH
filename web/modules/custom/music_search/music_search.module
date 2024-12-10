@@ -1,0 +1,24 @@
+<?php
+
+/**
+ * @file
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help()
+ */
+function music_search_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.music_search':
+      $output = '';
+      $output .= '<h3>' . t('Music Search') . '</h3>';
+      $output .= '<p>' . t('This is a help page for the module Music Search.') . '</p>';
+      $output .= '<p>' . t('WIP. Please come back at a later date.') . '</p>';
+
+      return $output;
+
+    default:
+  }
+}
