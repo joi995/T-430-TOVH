@@ -3,6 +3,11 @@
 class MusicSearchService {
   private $api;
 
+  /**
+   * @param $name
+   * @param $url
+   * @return void
+   */
   public function getImage($name, $url) {
       $img = "{$name}.png";
 

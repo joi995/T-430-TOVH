@@ -12,10 +12,13 @@ use Drupal\Core\Routing\RouteMatchInterface;
 function music_search_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.music_search':
+      $discogs = '<a href="https://www.discogs.com">' . '<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Discogs_record_icon.svg" alt="spotify logo" width="96"  height="54" />'  . '</a>';
+      $spotify = '<a href="https://open.spotify.com">' . '<img src="https://www.vectorlogo.zone/logos/spotify/spotify-tile.svg" alt="spotify logo" width="96"  height="54" />'  . '</a>';
       $output = '';
       $output .= '<h3>' . t('Music Search') . '</h3>';
       $output .= '<p>' . t('This is a help page for the module Music Search.') . '</p>';
       $output .= '<p>' . t('WIP. Please come back at a later date.') . '</p>';
+      $output .=  '<p>'. $spotify. '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;' . $discogs . '</p>'  ;
 
       return $output;
 
