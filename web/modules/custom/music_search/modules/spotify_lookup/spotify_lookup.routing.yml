@@ -1,0 +1,7 @@
+spotify_lookup.test:
+  path: '/spotify-lookup/test'
+  defaults:
+    _controller: '\Drupal\spotify_lookup\Controller\SpotifyLookupController::testSpotify'
+    _title: 'Test Spotify API'
+  requirements:
+    _permission: 'administer site configuration'

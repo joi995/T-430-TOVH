@@ -1,0 +1,6 @@
+name: Spotify Lookup
+type: module
+description: Provides Spotify lookup service.
+core_version_requirement: ^10
+dependencies:
+  - drupal:system

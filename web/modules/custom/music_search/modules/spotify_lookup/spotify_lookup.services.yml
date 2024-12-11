@@ -1,0 +1,6 @@
+services:
+  spotify_lookup.service:
+    class: Drupal\spotify_lookup\SpotifyLookupService
+    arguments: ['@http_client', '@config.factory']
+    tags:
+      - { name: default_service }
