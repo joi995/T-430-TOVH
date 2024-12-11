@@ -14,9 +14,10 @@ class SpotifyLookupController extends ControllerBase {
   }
 
   public static function create(ContainerInterface $container) {
-    return new static($container->get('spotify_lookup.spotify_service'));
+    return new static(
+      $container->get('spotify_lookup.service')
+    );
   }
-
   public function testSpotify(): array {
     $response = $this->spotifyService->search('track', 'Hello');
     return [

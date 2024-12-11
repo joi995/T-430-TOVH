@@ -16,19 +16,18 @@ class SpotifySettingsForm extends ConfigFormBase {
     return 'spotify_lookup_settings_form';
   }
 
-  public function buildForm(array $form, FormStateInterface $form_state): array
-  {
+  public function buildForm(array $form, FormStateInterface $form_state): array {
     $config = $this->config('spotify_lookup.settings');
 
     $form['client_id'] = [
-      '#type' => 'text field',
+      '#type' => 'textfield',
       '#title' => $this->t('Client ID'),
       '#default_value' => $config->get('client_id'),
       '#required' => TRUE,
     ];
 
     $form['client_secret'] = [
-      '#type' => 'text field',
+      '#type' => 'textfield',
       '#title' => $this->t('Client Secret'),
       '#default_value' => $config->get('client_secret'),
       '#required' => TRUE,
@@ -37,7 +36,8 @@ class SpotifySettingsForm extends ConfigFormBase {
     return parent::buildForm($form, $form_state);
   }
 
-  public function submitForm(array &$form, FormStateInterface $form_state) {
+  public function submitForm(array &$form, FormStateInterface $form_state): void
+  {
     $this->config('spotify_lookup.settings')
       ->set('client_id', $form_state->getValue('client_id'))
       ->set('client_secret', $form_state->getValue('client_secret'))
