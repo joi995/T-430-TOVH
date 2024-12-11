@@ -1,0 +1,7 @@
+music_search.create_form:
+  path: '/create/content'
+  defaults:
+    _controller: Drupal\music_search\Controller\MusicSearchController::MusicSearch
+    _title: 'Create new content'
+  requirements:
+    _role: Administrator + Editor + Registrar
