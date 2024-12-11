@@ -3,6 +3,10 @@
 class MusicSearchService {
   private $api;
 
+  public function dir() {
+    print(getcwd());
+  }
+
   /**
    * @param $name
    * @param $url
