@@ -33,7 +33,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
         'thumb' => [
           '#theme' => 'image',
           '#uri' => $item->thumb, // The image URL or URI.
-          '#alt' => $item->label . ' image', // Fallback alt text.
+          '#alt' => $item->alt, // Fallback alt text.
           '#attributes' => [
             'style' => 'max-width: 300px; max-height: 300px;', // Optional: Resize with inline styles.
           ],

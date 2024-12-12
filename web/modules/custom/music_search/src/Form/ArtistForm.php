@@ -138,6 +138,7 @@ class ArtistForm extends FormBase {
       $artist->description = $this->t('Popularity: @popularity', ['@popularity' => $item['popularity'] ?? 'N/A']);
       $artist->value = $item['external_urls']['spotify'] ?? '#';
       $artist->url = $item['external_urls']['spotify'] ?? '#';
+      $artist->alt = $this->t('@name cover image', ['@name' => $item['name']]) ?? 'N/A';
       $artist->thumb = $item['images'][0]['url'] ?? '#';
 
       $items[] = $artist;
