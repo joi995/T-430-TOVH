@@ -1,4 +1,4 @@
-#Spotify API
+# Spotify API
 To get the spotify api key go to https://developer.spotify.com
 Log in and open you dashboard
 create a new app
