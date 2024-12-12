@@ -6,12 +6,14 @@ dependencies:
     - field.field.node.song.field_music_category
     - field.field.node.song.field_song_length
     - field.field.node.song.field_song_on_youtube
+    - field.field.node.song.field_spotify_embedded
     - field.field.node.song.field_spotify_id
     - node.type.song
     - workflows.workflow.content_approval
   module:
     - content_moderation
     - path
+    - text
     - video_embed_field
 id: node.song.default
 targetEntityType: node
@@ -47,6 +49,14 @@ content:
     weight: 9
     region: content
     settings: {  }
+    third_party_settings: {  }
+  field_spotify_embedded:
+    type: text_textfield
+    weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
     third_party_settings: {  }
   field_spotify_id:
     type: string_textfield

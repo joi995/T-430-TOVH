@@ -12,7 +12,7 @@ entity_type: node
 bundle: album
 label: Song(s)
 description: 'Pick the songs that are on this album'
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
@@ -24,6 +24,6 @@ settings:
     sort:
       field: title
       direction: DESC
-    auto_create: false
+    auto_create: true
     auto_create_bundle: ''
 field_type: entity_reference

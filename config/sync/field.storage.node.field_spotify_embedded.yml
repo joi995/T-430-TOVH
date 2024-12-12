@@ -1,0 +1,20 @@
+uuid: 113f4444-0eb5-4f8b-9057-626b4f3901d4
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - text
+id: node.field_spotify_embedded
+field_name: field_spotify_embedded
+entity_type: node
+type: text
+settings:
+  max_length: 255
+module: text
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

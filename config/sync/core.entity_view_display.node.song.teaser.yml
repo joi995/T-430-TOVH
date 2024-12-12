@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.song.field_music_category
     - field.field.node.song.field_song_length
     - field.field.node.song.field_song_on_youtube
+    - field.field.node.song.field_spotify_embedded
     - field.field.node.song.field_spotify_id
     - node.type.song
   module:
@@ -30,4 +31,5 @@ hidden:
   field_music_category: true
   field_song_length: true
   field_song_on_youtube: true
+  field_spotify_embedded: true
   field_spotify_id: true

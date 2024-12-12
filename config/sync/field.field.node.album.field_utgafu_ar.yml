@@ -13,7 +13,7 @@ entity_type: node
 bundle: album
 label: 'Release Date'
 description: 'The year when the album came out. '
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''

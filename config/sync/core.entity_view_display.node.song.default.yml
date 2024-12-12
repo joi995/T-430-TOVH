@@ -6,9 +6,11 @@ dependencies:
     - field.field.node.song.field_music_category
     - field.field.node.song.field_song_length
     - field.field.node.song.field_song_on_youtube
+    - field.field.node.song.field_spotify_embedded
     - field.field.node.song.field_spotify_id
     - node.type.song
   module:
+    - text
     - user
     - video_embed_field
 id: node.song.default
@@ -47,6 +49,13 @@ content:
       height: 480
     third_party_settings: {  }
     weight: 3
+    region: content
+  field_spotify_embedded:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
     region: content
   links:
     settings: {  }
