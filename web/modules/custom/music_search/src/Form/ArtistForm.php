@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 
 class ArtistForm extends FormBase {
   public function getFormId() {
-    return 'music_search_creation_form';
+    return 'music_search_artist_form';
   }
   public function buildForm(array $form, FormStateInterface $form_state) {
     $form['Artist'] = [
