@@ -19,7 +19,7 @@ class SpotifyLookupController extends ControllerBase {
     );
   }
   public function testSpotify(): array {
-    $response = $this->spotifyService->search('track', 'Hello');
+    $response = $this->spotifyService->search('Hello', 'track');
     return [
       '#type' => 'markup',
       '#markup' => '<pre>' . print_r($response, TRUE) . '</pre>',
