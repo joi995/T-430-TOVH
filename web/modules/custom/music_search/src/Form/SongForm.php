@@ -15,10 +15,16 @@ class SongForm extends FormBase {
 
   public static function create(ContainerInterface $container) {
     return new static(
-      $container->get('spotify_lookup.service')
-    );
-  }
+      $container->get('spotify_lookup.service'));
+      $session = \Drupal::service('session');
 
+      // Merge artist and track items stored in session (if both exist).
+      $artist_items = $session->get('artist_selection_items', []);
+      $track_items = $session->get('track_selection_items', []);
+      $items = array_merge($artist_items, $track_items);
+
+      return new static($items);
+    }
   public function getFormId() {
     return 'music_search_song_form';
   }
@@ -51,35 +57,43 @@ class SongForm extends FormBase {
     // Build the Spotify query.
     $query = "track:$song artist:$artist";
 
-    // Call SpotifyLookupService to search.
     try {
+      // Call SpotifyLookupService to search tracks.
       $results = $this->spotifyService->search($query, 'track');
-      // Parse the results and display them.
-      $this->displayResults($results); // Custom helper method.
+
+      // Process the track results into items compatible with `SelectionForm`.
+      $items = $this->processTracks($results);
+
+      // Store the tracks in the session (same as for artists).
+      $session = \Drupal::service('session');
+      $session->set('track_selection_items', $items);
+
+      // Redirect to SelectionForm to display the tracks.
+      $form_state->setRedirect('music_search.select_items');
     } catch (\Exception $e) {
       \Drupal::messenger()->addError($this->t('An error occurred while searching Spotify: @error', ['@error' => $e->getMessage()]));
     }
   }
 
-  protected function displayResults(array $results) {
-    // Process and display results (example: track names and artists).
+  private function processTracks(array $results): array
+  {
     $items = [];
+
+    // Loop through the track items from the Spotify search results.
     foreach ($results['tracks']['items'] as $item) {
-      $track = $item['name'];
-      $artists = array_map(fn($artist) => $artist['name'], $item['artists']);
-      $items[] = $track . ' by ' . implode(', ', $artists);
+      $track = new \stdClass();
+      $track->id = $item['id'];
+      $track->label = $item['name']; // Track name.
+      $artist_names = array_map(fn($artist) => $artist['name'], $item['artists']);
+      $track->description = $this->t('By: @artists', ['@artists' => implode(', ', $artist_names)]);
+      $track->value = $item['external_urls']['spotify'] ?? '#'; // Spotify URL for the track.
+      $track->thumb = $item['album']['images'][0]['url'] ?? '#'; // Album image (thumbnail).
+      $track->alt = $this->t('@track by @artists album cover', ['@track' => $item['name'], '@artists' => implode(', ', $artist_names)]);
+      $track->url = $item['external_urls']['spotify'] ?? '#';
+
+      $items[] = $track; // Add the formatted track data.
     }
 
-    $render_array = [
-      '#theme' => 'item_list',
-      '#items' => $items,
-      '#title' => $this->t('Search Results'),
-    ];
-
-    // Render the array using the renderer service.
-    $rendered_output = \Drupal::service('renderer')->render($render_array);
-
-    // Add the rendered output to the messenger.
-    \Drupal::messenger()->addStatus($rendered_output);
+    return $items;
   }
 }
