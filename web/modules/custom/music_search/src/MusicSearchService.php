@@ -3,10 +3,6 @@
 class MusicSearchService {
   private $api;
 
-  public function dir() {
-    print(getcwd());
-  }
-
   /**
    * @param $name
    * @param $url
@@ -17,7 +13,7 @@ class MusicSearchService {
     $year = $date->format('Y');
     $month = $date->format('m');
 
-    $img = "sites/default/files/{$year}-{$month}/{$name}cover.jpg";
+    $img = "web/sites/default/files/{$year}-{$month}/{$name}cover.jpg";
 
     // Function to write image into file
     file_put_contents($img, file_get_contents($url));
