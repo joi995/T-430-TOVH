@@ -70,25 +70,21 @@ class ArtistForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Get user input.
     $artist = $form_state->getValue('Artist');
-
-    // Build the Spotify query.
     $query = "artist:$artist";
 
     try {
-      // Call SpotifyLookupService to search for artists.
       $results = $this->spotifyService->search($query, 'artist');
+      $items = $this->processArtists($results);
 
-      // Process and render the results.
-      $render_array = $this->displayResults($results);
-      $rendered_output = $this->renderer->render($render_array);
+      // Store items in the session.
+      $session = \Drupal::service('session');
+      $session->set('artist_selection_items', $items);
 
-      // Display rendered output as a status message.
-      \Drupal::messenger()->addStatus($rendered_output);
+      // Redirect to SelectionForm.
+      $form_state->setRedirect('music_search.select_items');
     } catch (\Exception $e) {
-      // Handle any errors.
-      \Drupal::messenger()->addError($this->t('An error occurred while searching Spotify: @error', ['@error' => $e->getMessage()]));
+      \Drupal::messenger()->addError($this->t('An error occurred: @error', ['@error' => $e->getMessage()]));
     }
   }
 
@@ -129,5 +125,22 @@ class ArtistForm extends FormBase {
       '#items' => $items,
       '#title' => $this->t('Search Results'),
     ];
+  }
+
+  private function processArtists(mixed $results) {
+    $items = [];
+
+    foreach ($results['artists']['items'] as $item) {
+      // Create an object representing each artist's data.
+      $artist = new \stdClass();
+      $artist->id = $item['id'];
+      $artist->label = $item['name'];
+      $artist->description = $this->t('Popularity: @popularity', ['@popularity' => $item['popularity'] ?? 'N/A']);
+      $artist->value = $item['external_urls']['spotify'] ?? '#';
+
+      $items[] = $artist;
+    }
+
+    return $items;
   }
 }
