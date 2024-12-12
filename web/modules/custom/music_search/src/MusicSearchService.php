@@ -13,13 +13,15 @@ class MusicSearchService {
    * @return void
    */
   public function getImage($name, $url) {
-      $img = "{$name}.png";
+    $date = new DateTime();
+    $year = $date->format('Y');
+    $month = $date->format('m');
 
-      // Function to write image into file
-      file_put_contents($img, file_get_contents($url));
+    $img = "sites/default/files/{$year}-{$month}/{$name}cover.jpg";
 
-      echo "File downloaded!";
+    // Function to write image into file
+    file_put_contents($img, file_get_contents($url));
+
+    echo "File downloaded!";
   }
 }
-
-?>

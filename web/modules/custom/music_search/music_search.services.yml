@@ -1,0 +1,3 @@
+services:
+  hello_world.salutation:
+    class: Drupal\music_search\MusicSearchService
