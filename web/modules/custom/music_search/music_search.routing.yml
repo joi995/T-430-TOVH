@@ -1,26 +1,26 @@
 music_search.create_form:
-  path: '/apifinder'
+  path: '/content/creation'
   defaults:
     _title: 'Create new content'
     _form: '\Drupal\music_search\Form\CreationForm'
   requirements:
     _role: 'administrator + content_editor + registrar'
 music_search.create_artist:
-  path: '/apifinder/artist'
+  path: '/content/creation/artist'
   defaults:
     _title: 'Create new Artist'
     _form: '\Drupal\music_search\Form\ArtistForm'
   requirements:
     _role: 'administrator + content_editor + registrar'
 music_search.create_song:
-  path: '/apifinder/song'
+  path: '/content/creation/song'
   defaults:
     _title: 'Create new Song'
     _form: '\Drupal\music_search\Form\SongForm'
   requirements:
     _role: 'administrator + content_editor + registrar'
 music_search.create_album:
-  path: '/apifinder/album'
+  path: '/content/creation/album'
   defaults:
     _title: 'Create new Album'
     _form: '\Drupal\music_search\Form\AlbumForm'
