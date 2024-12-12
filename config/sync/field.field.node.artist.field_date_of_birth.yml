@@ -13,7 +13,7 @@ entity_type: node
 bundle: artist
 label: 'Date of Birth/Creation'
 description: 'The date of birth for the artist or the date of a bands creation'
-required: true
+required: false
 translatable: false
 default_value: {  }
 default_value_callback: ''
