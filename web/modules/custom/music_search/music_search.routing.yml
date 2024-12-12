@@ -4,4 +4,4 @@ music_search.create_form:
     _controller: Drupal\music_search\Controller\MusicSearchController::MusicSearch
     _title: 'Create new content'
   requirements:
-    _permission: 'access content'
+    _role: 'administrator + content_editor + registrar'
