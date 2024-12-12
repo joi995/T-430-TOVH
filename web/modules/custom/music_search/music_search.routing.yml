@@ -19,7 +19,7 @@ music_search.create_song:
     _form: '\Drupal\music_search\Form\SongForm'
   requirements:
     _role: 'administrator + content_editor + registrar'
-music_search.create_Album:
+music_search.create_album:
   path: '/apifinder/album'
   defaults:
     _title: 'Create new Album'
