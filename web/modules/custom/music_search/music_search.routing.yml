@@ -33,4 +33,17 @@ music_search.select_items:
     _form: '\Drupal\music_search\Form\SelectionForm'
   requirements:
     _role: 'administrator + content_editor + registrar'
-
+music_search.select_items1:
+  path: '/content-creation/selection1'
+  defaults:
+    _title: 'Select which one'
+    _form: '\Drupal\music_search\Form\SelectionForm1'
+  requirements:
+    _role: 'administrator + content_editor + registrar'
+music_search.select_items2:
+  path: '/content-creation/selection2'
+  defaults:
+    _title: 'Select which one'
+    _form: '\Drupal\music_search\Form\SelectionForm2'
+  requirements:
+    _role: 'administrator + content_editor + registrar'
