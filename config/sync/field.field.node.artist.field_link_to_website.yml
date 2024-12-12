@@ -1,0 +1,23 @@
+uuid: 31d48787-3ddc-43f3-a638-fdb301b8c40f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_link_to_website
+    - node.type.artist
+  module:
+    - link
+id: node.artist.field_link_to_website
+field_name: field_link_to_website
+entity_type: node
+bundle: artist
+label: 'Link to Website'
+description: 'A link to the bands/artists website'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 0
+  link_type: 16
+field_type: link

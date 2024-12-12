@@ -1,0 +1,54 @@
+uuid: 310dabe3-14c0-4506-b165-4df98274facb
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - filter.format.basic_html
+    - filter.format.restricted_html
+    - media.type.audio
+    - media.type.document
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - workflows.workflow.content_approval
+  module:
+    - block_content
+    - comment
+    - content_moderation
+    - filter
+    - help
+    - media
+    - toolbar
+id: registrar
+label: Registrar
+weight: 4
+is_admin: null
+permissions:
+  - 'access block library'
+  - 'access help pages'
+  - 'access toolbar'
+  - 'cancel account'
+  - 'change own username'
+  - 'create audio media'
+  - 'create basic block content'
+  - 'create document media'
+  - 'create image media'
+  - 'create remote_video media'
+  - 'create video media'
+  - 'delete own audio media'
+  - 'delete own document media'
+  - 'delete own image media'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'edit own audio media'
+  - 'edit own comments'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own remote_video media'
+  - 'edit own video media'
+  - 'use content_approval transition create_new_draft'
+  - 'use content_approval transition needs_review'
+  - 'use text format basic_html'
+  - 'use text format restricted_html'
+  - 'view own unpublished media'

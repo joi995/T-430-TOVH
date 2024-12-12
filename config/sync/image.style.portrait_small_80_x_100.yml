@@ -1,0 +1,20 @@
+uuid: 834e8e38-72da-4381-8e33-9bdaf9829693
+langcode: en
+status: true
+dependencies: {  }
+name: portrait_small_80_x_100
+label: 'Portrait Small (80 x 100)'
+effects:
+  1b31e7cc-167d-48fa-979c-7339ff7faecb:
+    uuid: 1b31e7cc-167d-48fa-979c-7339ff7faecb
+    id: image_resize
+    weight: 1
+    data:
+      width: 80
+      height: 100
+  f2eafff7-71e9-418d-8981-75c67a5d536f:
+    uuid: f2eafff7-71e9-418d-8981-75c67a5d536f
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,27 @@
+uuid: 34a345a8-d742-41d0-86f2-58face670f5a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_artist_type
+field_name: field_artist_type
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: individual
+      label: Individual
+    -
+      value: band
+      label: Band
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

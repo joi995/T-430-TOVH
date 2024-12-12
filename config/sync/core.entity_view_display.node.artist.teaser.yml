@@ -1,0 +1,39 @@
+uuid: b093ae3e-0a82-4aed-bd7e-b254132c2f4d
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.artist.field_artist_type
+    - field.field.node.artist.field_date_of_birth
+    - field.field.node.artist.field_date_of_death
+    - field.field.node.artist.field_description
+    - field.field.node.artist.field_link_to_website
+    - field.field.node.artist.field_members
+    - field.field.node.artist.field_picture
+    - node.type.artist
+  module:
+    - user
+id: node.artist.teaser
+targetEntityType: node
+bundle: artist
+mode: teaser
+content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_artist_type: true
+  field_date_of_birth: true
+  field_date_of_death: true
+  field_description: true
+  field_link_to_website: true
+  field_members: true
+  field_picture: true

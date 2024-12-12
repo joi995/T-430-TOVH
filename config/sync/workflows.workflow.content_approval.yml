@@ -1,0 +1,66 @@
+uuid: ac55259b-7c77-49ee-8a15-0b9069888c67
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.advertisement
+    - node.type.album
+    - node.type.article
+    - node.type.artist
+    - node.type.page
+    - node.type.publisher
+    - node.type.song
+  module:
+    - content_moderation
+id: content_approval
+label: 'Content Approval'
+type: content_moderation
+type_settings:
+  states:
+    draft:
+      label: Draft
+      weight: -2
+      published: false
+      default_revision: false
+    needs_review:
+      label: 'Needs Review'
+      weight: -1
+      published: false
+      default_revision: false
+    published:
+      label: Published
+      weight: 0
+      published: true
+      default_revision: true
+  transitions:
+    create_new_draft:
+      label: 'Create New Draft'
+      from:
+        - draft
+        - published
+      to: draft
+      weight: -2
+    needs_review:
+      label: 'Needs Review'
+      from:
+        - draft
+        - needs_review
+      to: needs_review
+      weight: -1
+    publish:
+      label: Publish
+      from:
+        - needs_review
+        - published
+      to: published
+      weight: 0
+  entity_types:
+    node:
+      - advertisement
+      - album
+      - article
+      - artist
+      - page
+      - publisher
+      - song
+  default_moderation_state: draft

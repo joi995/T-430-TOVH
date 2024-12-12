@@ -1,0 +1,57 @@
+uuid: cdd11ec4-c0f4-4559-98f7-92db1c220c0d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.song.field_music_category
+    - field.field.node.song.field_song_length
+    - field.field.node.song.field_song_on_youtube
+    - field.field.node.song.field_spotify_id
+    - node.type.song
+  module:
+    - user
+    - video_embed_field
+id: node.song.default
+targetEntityType: node
+bundle: song
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_music_category:
+    type: entity_reference_label
+    label: inline
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_song_length:
+    type: string
+    label: inline
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_song_on_youtube:
+    type: video_embed_field_video
+    label: above
+    settings:
+      autoplay: true
+      responsive: true
+      width: 854
+      height: 480
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  field_spotify_id: true

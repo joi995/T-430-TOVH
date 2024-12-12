@@ -1,0 +1,24 @@
+uuid: 8e9ece59-ab15-45d2-b4c9-e22d6a544d87
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - olivero
+id: olivero_mainpagecontent
+theme: olivero
+region: content
+weight: -8
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: visible
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

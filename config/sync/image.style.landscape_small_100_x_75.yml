@@ -1,0 +1,20 @@
+uuid: 6a74727b-2842-41e6-b65b-082f7b821990
+langcode: en
+status: true
+dependencies: {  }
+name: landscape_small_100_x_75
+label: 'Landscape Small (100 x 75)'
+effects:
+  ec32bf14-a2dd-40d6-8561-e0c210989748:
+    uuid: ec32bf14-a2dd-40d6-8561-e0c210989748
+    id: image_resize
+    weight: 1
+    data:
+      width: 100
+      height: 75
+  eb889993-d31a-428d-b423-fef3ee98d91f:
+    uuid: eb889993-d31a-428d-b423-fef3ee98d91f
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

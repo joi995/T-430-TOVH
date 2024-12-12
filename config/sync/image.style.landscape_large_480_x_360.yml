@@ -1,0 +1,20 @@
+uuid: 18e3c253-8a79-4c0f-b842-9449636abc60
+langcode: en
+status: true
+dependencies: {  }
+name: landscape_large_480_x_360
+label: 'Landscape Large (480 x 360)'
+effects:
+  252189ef-cc06-4a3c-b7d4-f9ec8837c12d:
+    uuid: 252189ef-cc06-4a3c-b7d4-f9ec8837c12d
+    id: image_resize
+    weight: 1
+    data:
+      width: 480
+      height: 360
+  48e1b04c-8029-495e-b921-91ef4b676b6d:
+    uuid: 48e1b04c-8029-495e-b921-91ef4b676b6d
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

@@ -1,0 +1,20 @@
+uuid: adca7325-cf08-4247-8514-823e80f35ec8
+langcode: en
+status: true
+dependencies: {  }
+name: square_100_x_100
+label: 'Square Small (100 x 100)'
+effects:
+  d7478ac3-c884-46b2-b58b-95cadb49179b:
+    uuid: d7478ac3-c884-46b2-b58b-95cadb49179b
+    id: image_resize
+    weight: 1
+    data:
+      width: 100
+      height: 100
+  df7042c5-a932-48bf-a4d8-bd945daa3f2e:
+    uuid: df7042c5-a932-48bf-a4d8-bd945daa3f2e
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

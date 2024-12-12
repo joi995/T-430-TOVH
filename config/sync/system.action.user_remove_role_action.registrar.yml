@@ -1,0 +1,14 @@
+uuid: c028a268-c59d-4484-bb93-422a103357c2
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.registrar
+  module:
+    - user
+id: user_remove_role_action.registrar
+label: 'Remove the Registrar role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: registrar

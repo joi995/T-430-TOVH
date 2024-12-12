@@ -1,0 +1,95 @@
+uuid: e2c78c64-5b18-4c09-8608-57f92406de02
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.artist.field_artist_type
+    - field.field.node.artist.field_date_of_birth
+    - field.field.node.artist.field_date_of_death
+    - field.field.node.artist.field_description
+    - field.field.node.artist.field_link_to_website
+    - field.field.node.artist.field_members
+    - field.field.node.artist.field_picture
+    - node.type.artist
+  module:
+    - datetime
+    - link
+    - options
+    - user
+id: node.artist.default
+targetEntityType: node
+bundle: artist
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_artist_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_date_of_birth:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_date_of_death:
+    type: datetime_default
+    label: inline
+    settings:
+      timezone_override: ''
+      format_type: medium
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_description:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_link_to_website:
+    type: link
+    label: inline
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_members:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_picture:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

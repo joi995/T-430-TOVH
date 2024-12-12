@@ -1,0 +1,37 @@
+uuid: 0fbad87f-37ad-4f44-8732-3b4c6ffe4e0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.publisher.field_date_of_closure
+    - field.field.node.publisher.field_date_of_creation
+    - field.field.node.publisher.field_description
+    - field.field.node.publisher.field_link_to_website
+    - field.field.node.publisher.field_logo
+    - field.field.node.publisher.field_picture
+    - node.type.publisher
+  module:
+    - user
+id: node.publisher.teaser
+targetEntityType: node
+bundle: publisher
+mode: teaser
+content:
+  content_moderation_control:
+    weight: -20
+    settings: {  }
+    third_party_settings: {  }
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_date_of_closure: true
+  field_date_of_creation: true
+  field_description: true
+  field_link_to_website: true
+  field_logo: true
+  field_picture: true

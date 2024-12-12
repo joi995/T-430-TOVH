@@ -1,0 +1,34 @@
+uuid: 95370c0b-1827-463b-9516-f598516e7d73
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_picture
+    - media.type.image
+    - node.type.artist
+  content:
+    - 'media:image:42eb6400-cb83-47c8-9bef-6e0af2c5cc48'
+id: node.artist.field_picture
+field_name: field_picture
+entity_type: node
+bundle: artist
+label: Picture
+description: 'A picture of a band or an individual artist'
+required: false
+translatable: false
+default_value:
+  -
+    target_uuid: 42eb6400-cb83-47c8-9bef-6e0af2c5cc48
+    weight: 0
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

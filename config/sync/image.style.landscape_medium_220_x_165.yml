@@ -1,0 +1,20 @@
+uuid: e391dd11-3769-402d-afe0-185ecaa42c3e
+langcode: en
+status: true
+dependencies: {  }
+name: landscape_medium_220_x_165
+label: 'Landscape Medium (220 x 165)'
+effects:
+  47556ad5-69c7-4265-b4a8-2b010d4de5f2:
+    uuid: 47556ad5-69c7-4265-b4a8-2b010d4de5f2
+    id: image_resize
+    weight: 1
+    data:
+      width: 220
+      height: 165
+  d598d653-1af8-4872-9aa5-0b3a82fe3bcf:
+    uuid: d598d653-1af8-4872-9aa5-0b3a82fe3bcf
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

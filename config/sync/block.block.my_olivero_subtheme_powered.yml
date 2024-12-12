@@ -1,0 +1,22 @@
+uuid: 36b4f218-a0e9-439f-8417-ca2e9e148bb4
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - my_olivero_subtheme
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: my_olivero_subtheme_powered
+theme: my_olivero_subtheme
+region: sidebar_first
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

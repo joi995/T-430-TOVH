@@ -1,0 +1,19 @@
+uuid: 2bfc01e8-38fe-44a5-bc89-b63a650b0223
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_spotify_id
+    - node.type.song
+id: node.song.field_spotify_id
+field_name: field_spotify_id
+entity_type: node
+bundle: song
+label: 'Spotify ID'
+description: "Not in use at the moment, but might be in the future.\r\nEnter the ID of the song on Spotify\r\nExample: 6rqhFgbbKwnb9MLmUQDhG6"
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

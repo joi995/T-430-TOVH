@@ -1,0 +1,21 @@
+uuid: 84db77b8-173c-473f-a4dc-a12f942f6132
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_front_page_highlight
+    - node.type.album
+id: node.album.field_front_page_highlight
+field_name: field_front_page_highlight
+entity_type: node
+bundle: album
+label: 'Front Page Highlight'
+description: 'Check this to make the album highlighted on the front page'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Highlight on front page'
+  off_label: 'Do not highlight on front page'
+field_type: boolean

@@ -1,0 +1,20 @@
+uuid: 7fd94435-b324-41d6-971d-707c7f2c6120
+langcode: en
+status: true
+dependencies: {  }
+name: square_480_x_480
+label: 'Square Large (480 x 480)'
+effects:
+  ebb076ff-7b16-468f-bf3b-70d290557ea3:
+    uuid: ebb076ff-7b16-468f-bf3b-70d290557ea3
+    id: image_resize
+    weight: 1
+    data:
+      width: 480
+      height: 480
+  862ab721-131d-4653-95ed-261d69295f1c:
+    uuid: 862ab721-131d-4653-95ed-261d69295f1c
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

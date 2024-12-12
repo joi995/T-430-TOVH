@@ -1,0 +1,23 @@
+uuid: 642666ee-e3ff-478b-9bf6-d09619b7f1fc
+langcode: en
+status: true
+dependencies:
+  module:
+    - search
+  theme:
+    - my_olivero_subtheme
+_core:
+  default_config_hash: imMyHD6LYci0gtXq56qr9ZKGHzbEG9uFydrN5EhKtSU
+id: my_olivero_subtheme_search_form_wide
+theme: my_olivero_subtheme
+region: secondary_menu
+weight: -5
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (wide)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

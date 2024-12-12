@@ -1,0 +1,20 @@
+uuid: 32382dd9-82f6-4ca6-a7e6-f8505f86848b
+langcode: en
+status: true
+dependencies: {  }
+name: square_220_x_220
+label: 'Square Medium (220 x 220)'
+effects:
+  b1d1c84b-4232-405b-aa39-a2fa7e6b4751:
+    uuid: b1d1c84b-4232-405b-aa39-a2fa7e6b4751
+    id: image_resize
+    weight: 1
+    data:
+      width: 220
+      height: 220
+  a024466a-8c9f-4f5e-acbd-99ab88c9afac:
+    uuid: a024466a-8c9f-4f5e-acbd-99ab88c9afac
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

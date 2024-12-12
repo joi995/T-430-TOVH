@@ -1,0 +1,29 @@
+uuid: 400fa7ca-203a-49c3-8a25-07f952d82aea
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_song_s
+    - node.type.album
+    - node.type.song
+id: node.album.field_song_s
+field_name: field_song_s
+entity_type: node
+bundle: album
+label: Song(s)
+description: 'Pick the songs that are on this album'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      song: song
+    sort:
+      field: title
+      direction: DESC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

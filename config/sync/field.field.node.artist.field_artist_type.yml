@@ -1,0 +1,23 @@
+uuid: e07e21df-3116-466b-9d6c-2a7358056491
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_artist_type
+    - node.type.artist
+  module:
+    - options
+id: node.artist.field_artist_type
+field_name: field_artist_type
+entity_type: node
+bundle: artist
+label: 'Artist Type'
+description: 'Select whether you are creating a individual artist or a band'
+required: true
+translatable: false
+default_value:
+  -
+    value: individual
+default_value_callback: ''
+settings: {  }
+field_type: list_string

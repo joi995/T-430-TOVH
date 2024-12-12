@@ -1,0 +1,21 @@
+uuid: 599df15c-9cb5-4c7e-add6-3d921e01b24f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_death
+    - node.type.artist
+  module:
+    - datetime
+id: node.artist.field_date_of_death
+field_name: field_date_of_death
+entity_type: node
+bundle: artist
+label: 'Date of Death/Disbanding'
+description: 'If the artist is dead, insert his date of death. Or if this is a band and it is disbanded, the date of disbanding'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

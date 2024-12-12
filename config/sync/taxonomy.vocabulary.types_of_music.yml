@@ -1,0 +1,9 @@
+uuid: f2e9b697-acce-4871-bcf2-02e314ad01db
+langcode: en
+status: true
+dependencies: {  }
+name: 'Types of music'
+vid: types_of_music
+description: 'Music category'
+weight: 0
+new_revision: false

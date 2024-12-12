@@ -1,0 +1,19 @@
+uuid: a821cb9a-7707-440e-9f1c-7c2065effd07
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_description
+    - node.type.artist
+id: node.artist.field_description
+field_name: field_description
+entity_type: node
+bundle: artist
+label: Description
+description: 'Description of artist or band'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

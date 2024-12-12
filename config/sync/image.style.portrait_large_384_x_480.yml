@@ -1,0 +1,20 @@
+uuid: 5073548f-21fe-43fe-a7c9-61ae0e611912
+langcode: en
+status: true
+dependencies: {  }
+name: portrait_large_384_x_480
+label: 'Portrait Large (384 x 480)'
+effects:
+  941d3329-9bbd-4261-8b12-35dce5cc4eac:
+    uuid: 941d3329-9bbd-4261-8b12-35dce5cc4eac
+    id: image_resize
+    weight: 1
+    data:
+      width: 384
+      height: 480
+  20b2dcd2-5e87-4ff1-9fac-6c104be373e2:
+    uuid: 20b2dcd2-5e87-4ff1-9fac-6c104be373e2
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

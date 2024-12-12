@@ -1,0 +1,14 @@
+uuid: 0fa2479b-2c48-4a18-b28a-92530c86ad7c
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.registrar
+  module:
+    - user
+id: user_add_role_action.registrar
+label: 'Add the Registrar role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: registrar

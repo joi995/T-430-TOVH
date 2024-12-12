@@ -1,0 +1,30 @@
+uuid: 72937f45-8092-48e2-9ba1-aaa01f9204db
+langcode: en
+status: true
+dependencies:
+  module:
+    - comment
+    - contact
+    - file
+    - help
+    - media
+    - search
+    - shortcut
+    - system
+_core:
+  default_config_hash: cFrlqjtkTfvY3RGccjJkPf1SGIfJ942IrxTLWAO4mgA
+id: authenticated
+label: 'Authenticated user'
+weight: 1
+is_admin: false
+permissions:
+  - 'access comments'
+  - 'access content'
+  - 'access help pages'
+  - 'access shortcuts'
+  - 'access site-wide contact form'
+  - 'delete own files'
+  - 'edit own comments'
+  - 'post comments'
+  - 'search content'
+  - 'view media'

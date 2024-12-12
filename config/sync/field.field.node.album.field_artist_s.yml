@@ -1,0 +1,29 @@
+uuid: 4a07bd79-fee2-4fe4-83aa-984981a5a26b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_artist_s
+    - node.type.album
+    - node.type.artist
+id: node.album.field_artist_s
+field_name: field_artist_s
+entity_type: node
+bundle: album
+label: Artist(s)
+description: 'Pick the band or individual artist(s) who made this album'
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      artist: artist
+    sort:
+      field: title
+      direction: DESC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

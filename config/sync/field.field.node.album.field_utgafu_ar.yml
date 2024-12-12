@@ -1,0 +1,21 @@
+uuid: 0f6e907e-9853-4198-94e4-54da01ebfcdf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_utgafu_ar
+    - node.type.album
+  module:
+    - datetime
+id: node.album.field_utgafu_ar
+field_name: field_utgafu_ar
+entity_type: node
+bundle: album
+label: 'Release Date'
+description: 'The year when the album came out. '
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

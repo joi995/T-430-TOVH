@@ -1,0 +1,21 @@
+uuid: edc87461-6c49-42c1-9cc7-6420ea7110d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_of_closure
+    - node.type.publisher
+  module:
+    - datetime
+id: node.publisher.field_date_of_closure
+field_name: field_date_of_closure
+entity_type: node
+bundle: publisher
+label: 'Date of Closure'
+description: 'If the publisher has stopped operating, insert the date when they stopped.'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

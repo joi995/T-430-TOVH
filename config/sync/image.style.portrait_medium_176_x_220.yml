@@ -1,0 +1,20 @@
+uuid: f394234f-e6ea-4e12-84c5-bb7e01d08499
+langcode: en
+status: true
+dependencies: {  }
+name: portrait_medium_176_x_220
+label: 'Portrait Medium (176 x 220)'
+effects:
+  49388ed8-6282-4058-89c1-8fd373fc3c8f:
+    uuid: 49388ed8-6282-4058-89c1-8fd373fc3c8f
+    id: image_resize
+    weight: 1
+    data:
+      width: 176
+      height: 220
+  e86deb10-d63b-4330-9f22-b9c053440dd8:
+    uuid: e86deb10-d63b-4330-9f22-b9c053440dd8
+    id: image_convert
+    weight: 2
+    data:
+      extension: webp

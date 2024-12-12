@@ -1,0 +1,6 @@
+_core:
+  default_config_hash: 5ysBppnhHFwGoKD76sSqZzG-_iBZfkufeIffdUpwof0
+client_id: 2fd304a838c642b082a2bc5714a96ed4
+client_secret: b56d4df2897647d6a6bac14afbf948de
+api_base_url: 'https://api.spotify.com/v1'
+auth_url: 'https://accounts.spotify.com/api/token'

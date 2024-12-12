@@ -1,0 +1,29 @@
+uuid: 3e6ec0ea-22eb-487f-8292-445337be2442
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_music_category
+    - node.type.song
+    - taxonomy.vocabulary.types_of_music
+id: node.song.field_music_category
+field_name: field_music_category
+entity_type: node
+bundle: song
+label: 'Music Category'
+description: 'What type/s of music is this song, for example: Rap, Hip-hop or Rock'
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      types_of_music: types_of_music
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

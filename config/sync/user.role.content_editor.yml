@@ -1,0 +1,147 @@
+uuid: 9a830eba-3bb5-4383-ac35-a75f2022716a
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.basic
+    - filter.format.basic_html
+    - filter.format.full_html
+    - filter.format.restricted_html
+    - media.type.audio
+    - media.type.document
+    - media.type.image
+    - media.type.remote_video
+    - media.type.video
+    - node.type.article
+    - node.type.artist
+    - node.type.page
+    - taxonomy.vocabulary.tags
+    - workflows.workflow.content_approval
+    - workflows.workflow.editorial
+  module:
+    - block_content
+    - coffee
+    - comment
+    - conditional_fields
+    - contact
+    - content_moderation
+    - contextual
+    - field_ui
+    - file
+    - filter
+    - help
+    - media
+    - node
+    - path
+    - system
+    - taxonomy
+    - toolbar
+_core:
+  default_config_hash: e_wG1u7SrGaJbY2-Szgbgl-c8T3kdirU3uTNq2c_QJQ
+id: content_editor
+label: Editor
+weight: 2
+is_admin: false
+permissions:
+  - 'access administration pages'
+  - 'access block library'
+  - 'access coffee'
+  - 'access content overview'
+  - 'access contextual links'
+  - 'access files overview'
+  - 'access help pages'
+  - 'access media overview'
+  - 'access toolbar'
+  - 'administer block_content display'
+  - 'administer block_content form display'
+  - 'administer comment display'
+  - 'administer comment form display'
+  - 'administer comments'
+  - 'administer contact_message display'
+  - 'administer contact_message form display'
+  - 'administer display modes'
+  - 'administer media display'
+  - 'administer media form display'
+  - 'administer node display'
+  - 'administer node form display'
+  - 'administer taxonomy_term display'
+  - 'administer taxonomy_term form display'
+  - 'administer url aliases'
+  - 'administer user display'
+  - 'administer user form display'
+  - 'cancel account'
+  - 'change own username'
+  - 'create article content'
+  - 'create audio media'
+  - 'create basic block content'
+  - 'create document media'
+  - 'create image media'
+  - 'create page content'
+  - 'create remote_video media'
+  - 'create terms in tags'
+  - 'create url aliases'
+  - 'create video media'
+  - 'delete any audio media'
+  - 'delete any basic block content'
+  - 'delete any basic block content revisions'
+  - 'delete any document media'
+  - 'delete any image media'
+  - 'delete any remote_video media'
+  - 'delete any video media'
+  - 'delete article revisions'
+  - 'delete media'
+  - 'delete own article content'
+  - 'delete own audio media'
+  - 'delete own document media'
+  - 'delete own files'
+  - 'delete own image media'
+  - 'delete own page content'
+  - 'delete own remote_video media'
+  - 'delete own video media'
+  - 'delete page revisions'
+  - 'edit any audio media'
+  - 'edit any basic block content'
+  - 'edit any document media'
+  - 'edit any image media'
+  - 'edit any remote_video media'
+  - 'edit any video media'
+  - 'edit own article content'
+  - 'edit own artist content'
+  - 'edit own audio media'
+  - 'edit own comments'
+  - 'edit own document media'
+  - 'edit own image media'
+  - 'edit own page content'
+  - 'edit own remote_video media'
+  - 'edit own video media'
+  - 'edit terms in tags'
+  - 'revert all revisions'
+  - 'revert any audio media revisions'
+  - 'revert any basic block content revisions'
+  - 'revert any document media revisions'
+  - 'revert any image media revisions'
+  - 'revert any remote_video media revisions'
+  - 'revert any video media revisions'
+  - 'skip comment approval'
+  - 'use content_approval transition create_new_draft'
+  - 'use content_approval transition needs_review'
+  - 'use content_approval transition publish'
+  - 'use editorial transition archive'
+  - 'use editorial transition archived_draft'
+  - 'use editorial transition archived_published'
+  - 'use editorial transition create_new_draft'
+  - 'use editorial transition publish'
+  - 'use text format basic_html'
+  - 'use text format full_html'
+  - 'use text format restricted_html'
+  - 'view all revisions'
+  - 'view any audio media revisions'
+  - 'view any basic block content history'
+  - 'view any document media revisions'
+  - 'view any image media revisions'
+  - 'view any remote_video media revisions'
+  - 'view any video media revisions'
+  - 'view conditional fields'
+  - 'view own unpublished content'
+  - 'view own unpublished media'
+  - 'view the administration theme'

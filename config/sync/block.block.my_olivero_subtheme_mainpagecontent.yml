@@ -1,0 +1,24 @@
+uuid: 5e1ebe34-e366-4acd-a578-1d26c77b8eb6
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - my_olivero_subtheme
+id: my_olivero_subtheme_mainpagecontent
+theme: my_olivero_subtheme
+region: content
+weight: 0
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: visible
+  provider: system
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'
