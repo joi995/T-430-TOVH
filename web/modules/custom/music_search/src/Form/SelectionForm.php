@@ -28,10 +28,22 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
   public function buildForm(array $form, FormStateInterface $form_state) {
     foreach ($this->items as $item) {
       $form[$item->id] = [
-        '#type' => 'submit',
-        '#title' => $item->label,
-        '#description' => $item->description,
-        '#value' => $item->value,
+        // Group each button/image in a container.
+        '#type' => 'container',
+        'thumb' => [
+          '#theme' => 'image',
+          '#uri' => $item->thumb, // The image URL or URI.
+          '#alt' => $item->label . ' image', // Fallback alt text.
+          '#attributes' => [
+            'style' => 'max-width: 300px; max-height: 300px;', // Optional: Resize with inline styles.
+          ],
+        ],
+        'button' => [
+          '#type' => 'submit',
+          '#title' => $item->label,
+          '#description' => $item->description,
+          '#value' => $item->label,
+        ],
       ];
     }
 
