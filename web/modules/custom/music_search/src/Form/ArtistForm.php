@@ -6,6 +6,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Drupal\spotify_lookup\SpotifyLookupService;
 use Drupal\Core\Render\RendererInterface;
+use Drupal\music_search\Form\SelectionForm;
 
 class ArtistForm extends FormBase {
 
@@ -122,6 +123,7 @@ class ArtistForm extends FormBase {
     }
 
     // Return the render array as an item list.
+    SelectionForm::create($items);
     return [
       '#theme' => 'item_list',
       '#items' => $items,

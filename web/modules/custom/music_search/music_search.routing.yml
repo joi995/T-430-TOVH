@@ -26,4 +26,11 @@ music_search.create_album:
     _form: '\Drupal\music_search\Form\AlbumForm'
   requirements:
     _role: 'administrator + content_editor + registrar'
+music_search.select_items:
+  path: '/content-creation/selection'
+  defaults:
+    _title: 'Select which one'
+    _form: '\Drupal\music_search\Form\SelectionForm'
+  requirements:
+    _role: 'administrator + content_editor + registrar'
 
