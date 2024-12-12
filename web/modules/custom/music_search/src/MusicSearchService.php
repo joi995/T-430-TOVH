@@ -13,7 +13,7 @@ class MusicSearchService {
     $year = $date->format('Y');
     $month = $date->format('m');
 
-    $img = "web/sites/default/files/{$year}-{$month}/{$name}cover.jpg";
+    $img = DRUPAL_ROOT . "web/sites/default/files/{$year}-{$month}/{$name}cover.jpg";
 
     // Function to write image into file
     file_put_contents($img, file_get_contents($url));
