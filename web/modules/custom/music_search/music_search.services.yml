@@ -1,3 +1,4 @@
 services:
-  hello_world.salutation:
+  music_search.service:
     class: Drupal\music_search\MusicSearchService
+    arguments: []
