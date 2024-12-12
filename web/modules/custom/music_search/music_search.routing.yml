@@ -1,7 +1,14 @@
 music_search.create_form:
   path: '/apifinder'
   defaults:
-    _controller: Drupal\music_search\Controller\MusicSearchController::MusicSearch
     _title: 'Create new content'
+    _form: '\Drupal\music_search\Form\CreationForm'
+  requirements:
+    _role: 'administrator + content_editor + registrar'
+music_search.create_artist:
+  path: '/apifinder/artist'
+  defaults:
+    _title: 'Create new form'
+    _form: '\Drupal\music_search\Form\ArtistForm'
   requirements:
     _role: 'administrator + content_editor + registrar'

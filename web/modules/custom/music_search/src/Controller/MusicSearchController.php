@@ -10,6 +10,7 @@ class MusicSearchController extends ControllerBase {
   public function MusicSearch() {
     return [
       '#theme' => 'music_search',
+      '#form_id' => 'music_search_form',
     ];
   }
 }

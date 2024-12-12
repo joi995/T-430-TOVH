@@ -5,17 +5,15 @@ use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormInterface;
 use Drupal\Core\Form\FormStateInterface;
 
-class CreationForm extends FormBase {
+class ArtistForm extends FormBase {
   public function getFormId() {
     return 'music_search_creation_form';
   }
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['type'] = [
-      '#type' => 'select',
-      '#title' => $this->t('Type'),
-      '#options' => ['album' =>$this->t('Album'), 'song'=>$this->t('Song'), 'artist'=>$this->t('Artist')],
+    $form['Artist'] = [
+      '#type' => 'textfield',
+      '#title' => $this->t('Artist Name'),
       '#required' => TRUE,
-      '#default_value' => t('Album'),
     ];
     $form['submit'] = [
       '#type' => 'submit',
