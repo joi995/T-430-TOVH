@@ -5,6 +5,7 @@ use AllowDynamicProperties;
 use Drupal\Core\Form\FormBase;
 use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
+use Drupal\spotify_lookup\SpotifyLookupService;
 
 
 #[AllowDynamicProperties] class SelectionForm2 extends FormBase
@@ -12,21 +13,18 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
   protected $items;
 
-  public static function create(ContainerInterface $container)
-  {
+  public static function create(ContainerInterface $container) {
     $session = \Drupal::service('session');
-    $items = $session->get('album_selection_items', []); // Retrieve items from session.
-    return new static($items);
+    $items = $session->get('album_selection_items', []);
+    $spotifyService = $container->get('spotify_lookup.service');
+
+    // Correct parameter order.
+    return new static($spotifyService, $items);
   }
 
-  public function __construct(array $items = [])
-  {
+  public function __construct(SpotifyLookupService $spotifyService, array $items = []) {
+    $this->spotifyService = $spotifyService;
     $this->items = $items;
-  }
-
-  public function getFormId()
-  {
-    return 'music_search_selection_form';
   }
 
   public function buildForm(array $form, FormStateInterface $form_state) {
@@ -69,55 +67,81 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
     return $form;
   }
 
-  public function submitForm(array &$form, FormStateInterface $form_state)
-  {
+  public function submitForm(array &$form, FormStateInterface $form_state) {
     // Retrieve the triggering button.
     $button = $form_state->getTriggeringElement();
 
-    // Extract the button's name to determine which artist was selected.
-    $selected_item_id = $button['#name']; // The button's name corresponds to the item's ID.
+    // Extract the button's name to determine which album was selected.
+    $selected_album_id = $button['#name']; // The button's name corresponds to the album ID.
 
-    // Find the artist data in $this->items using the ID.
-    $selected_item = null;
-    foreach ($this->items as $item) {
-      if ($item->id === $selected_item_id) {
-        $selected_item = $item;
-        break;
+    // Retrieve album details and associated data
+    try {
+      $spotify_album_data = $this->spotifyService->getDetails($selected_album_id, 'album');
+
+      // Retrieve and save Artists from the album data.
+      $artist_ids = [];
+      foreach ($spotify_album_data['artists'] as $artist) {
+        $artist_details = $this->spotifyService->getDetails($artist['id'], 'artist'); // Fetch artist details.
+
+        $artist_data = [
+          'name' => $artist_details['name'],
+          'website' => $artist_details['external_urls']['spotify'] ?? '',
+          'picture_url' => $artist_details['images'][0]['url'] ?? null,
+          'artist_type' => 'Individual', // Adjust as needed based on additional details.
+        ];
+
+        $artist_node_id = \Drupal::service('music_search.service')->saveArtist($artist_data);
+        $artist_ids[] = $artist_node_id;
       }
-    }
 
-    if ($selected_item) {
-      // Prepare the artist data for saving.
+      // Retrieve and save Songs from the album data.
+      $song_ids = [];
+      foreach ($spotify_album_data['tracks']['items'] as $track) {
+        $song_data = [
+          'title' => $track['name'],
+          'spotify_id' => $track['id'],
+          'spotify_embedded' => $this->getSpotifyEmbedCode($track['uri']),
+          'song_length' => gmdate('i:s', (int) ($track['duration_ms'] / 1000)),
+          'music_category' => null, // Optional: Map to taxonomy term.
+        ];
+
+        $song_node_id = \Drupal::service('music_search.service')->saveSong($song_data);
+        $song_ids[] = $song_node_id;
+      }
+
+      // Prepare the album data for saving.
       $album_data = [
-        'title' => $selected_item->label, // Album name.
-        'artist' => $selected_item->artists,
-        'description' => $selected_item->description, // Artist description.
-        'website' => $selected_item->url ?? null, // Website, if available.
-        'picture_url' => $selected_item->thumb, // Image URL.
-        'songs' => $selected_item->songs, // Example static data.
-        'release_date' => $selected_item->release,
+        'title' => $spotify_album_data['name'],
+        'artist' => $artist_ids,
+        'description' => $spotify_album_data['description'] ?? '',
+        'website' => $spotify_album_data['external_urls']['spotify'] ?? null,
+        'picture_url' => $spotify_album_data['images'][0]['url'] ?? '',
+        'songs' => $song_ids,
+        'release_date' => $spotify_album_data['release_date'] ?? null,
       ];
 
-      // Save the artist using MusicSearchService.
-      try {
-        /** @var \Drupal\music_search\MusicSearchService $musicSearchService */
-        $musicSearchService = \Drupal::service('music_search.service');
-        $node_id = $musicSearchService->saveAlbum($album_data);
+      $musicSearchService = \Drupal::service('music_search.service');
+      $album_node_id = $musicSearchService->saveAlbum($album_data);
 
-        // Inform the user that the artist was saved successfully.
-        \Drupal::messenger()->addStatus($this->t('The Album "@name" was successfully saved with Node ID: @id.', [
-          '@name' => $selected_item->label,
-          '@id' => $node_id,
-        ]));
-      } catch (\Exception $e) {
-        // Handle errors and notify the user.
-        \Drupal::messenger()->addError($this->t('An error occurred while saving the Album: @error', [
-          '@error' => $e->getMessage(),
-        ]));
-      }
-    } else {
-      // No match found, notify the user.
-      \Drupal::messenger()->addError($this->t('The selected Album could not be found.'));
+      \Drupal::messenger()->addStatus($this->t('The Album "@name" was successfully saved with Node ID: @id.', [
+        '@name' => $spotify_album_data['name'],
+        '@id' => $album_node_id,
+      ]));
+    } catch (\Exception $e) {
+      // Handle errors
+      \Drupal::messenger()->addError($this->t('An error occurred while saving the album: @message', [
+        '@message' => $e->getMessage(),
+      ]));
     }
   }
+
+  public function getFormId() {
+    return 'music_search_selection_form_2';
+  }
+
+  protected function getSpotifyEmbedCode(string $spotifyUri): string {
+    $embedUrl = str_replace(':', '/', $spotifyUri); // Convert Spotify URI to embed URL.
+    return 'https://open.spotify.com/embed/' . $embedUrl;
+  }
+
 }
