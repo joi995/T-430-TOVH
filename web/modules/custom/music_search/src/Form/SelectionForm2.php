@@ -90,19 +90,19 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
         $node_id = $musicSearchService->saveAlbum($album_data);
 
         // Inform the user that the artist was saved successfully.
-        \Drupal::messenger()->addStatus($this->t('The artist "@name" was successfully saved with Node ID: @id.', [
+        \Drupal::messenger()->addStatus($this->t('The Album "@name" was successfully saved with Node ID: @id.', [
           '@name' => $selected_item->label,
           '@id' => $node_id,
         ]));
       } catch (\Exception $e) {
         // Handle errors and notify the user.
-        \Drupal::messenger()->addError($this->t('An error occurred while saving the artist: @error', [
+        \Drupal::messenger()->addError($this->t('An error occurred while saving the Album: @error', [
           '@error' => $e->getMessage(),
         ]));
       }
     } else {
       // No match found, notify the user.
-      \Drupal::messenger()->addError($this->t('The selected artist could not be found.'));
+      \Drupal::messenger()->addError($this->t('The selected Album could not be found.'));
     }
   }
 }
