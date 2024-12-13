@@ -114,15 +114,19 @@ public function submitForm(array &$form, FormStateInterface $form_state) {
     // Loop through the album items from the Spotify search results.
     if (!empty($results['albums']['items'])) {
       foreach ($results['albums']['items'] as $item) {
+        $artist_names = array_map(fn($artist) => $artist['name'], $item['artists']);
+
         $album = new \stdClass();
         $album->id = $item['id'];
         $album->label = $item['name']; // Album name.
-        $artist_names = array_map(fn($artist) => $artist['name'], $item['artists']);
+        $album->artists = implode(', ', $artist_names);
         $album->description = $this->t('By: @artists', ['@artists' => implode(', ', $artist_names)]);
         $album->value = $item['external_urls']['spotify'] ?? '#'; // Spotify URL for the album.
         $album->thumb = $item['images'][0]['url'] ?? '#'; // Album cover (thumbnail).
         $album->alt = $this->t('@album by @artists cover image', ['@album' => $item['name'], '@artists' => implode(', ', $artist_names)]);
         $album->url = $item['external_urls']['spotify'] ?? '#';
+        $album->songs = $item['tracks']['items'] ?? 0;
+        $album->release = $item['release_date'] ?? 'N/A';
 
         $items[] = $album; // Add the formatted album data.
       }

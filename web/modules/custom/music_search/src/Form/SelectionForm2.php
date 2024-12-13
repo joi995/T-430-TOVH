@@ -73,19 +73,21 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 
     if ($selected_item) {
       // Prepare the artist data for saving.
-      $artist_data = [
-        'name' => $selected_item->label, // Artist name.
+      $album_data = [
+        'title' => $selected_item->label, // Album name.
+        'artist' => $selected_item->artists,
         'description' => $selected_item->description, // Artist description.
         'website' => $selected_item->url ?? null, // Website, if available.
         'picture' => $selected_item->thumb, // Image URL.
-        'artist_type' => 'Solo', // Example static data.
+        'songs' => $selected_item->songs, // Example static data.
+        'release_date' => $selected_item->release,
       ];
 
       // Save the artist using MusicSearchService.
       try {
         /** @var \Drupal\music_search\MusicSearchService $musicSearchService */
         $musicSearchService = \Drupal::service('music_search.service');
-        $node_id = $musicSearchService->saveArtist($artist_data);
+        $node_id = $musicSearchService->saveAlbum($album_data);
 
         // Inform the user that the artist was saved successfully.
         \Drupal::messenger()->addStatus($this->t('The artist "@name" was successfully saved with Node ID: @id.', [
