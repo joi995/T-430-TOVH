@@ -7,7 +7,7 @@ use Drupal\Core\Form\FormStateInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
 
-#[AllowDynamicProperties] class SelectionForm extends FormBase
+#[AllowDynamicProperties] class SelectionForm1 extends FormBase
 {
 
   protected $items;

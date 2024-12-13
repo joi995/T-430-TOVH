@@ -69,7 +69,7 @@ class SongForm extends FormBase {
       $session->set('track_selection_items', $items);
 
       // Redirect to SelectionForm to display the tracks.
-      $form_state->setRedirect('music_search.select_items');
+      $form_state->setRedirect('music_search.select_items1');
     } catch (\Exception $e) {
       \Drupal::messenger()->addError($this->t('An error occurred while searching Spotify: @error', ['@error' => $e->getMessage()]));
     }
