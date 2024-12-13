@@ -3,8 +3,12 @@
 namespace Drupal\music_search;
 
 use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+use Drupal\media\Entity\Media;
+use Drupal\Core\StringTranslation\StringTranslationTrait;
 
 class MusicSearchService {
+  use StringTranslationTrait;
   private $api;
 
   /**
@@ -77,17 +81,56 @@ class MusicSearchService {
    * @return int
    *   The ID of the saved artist node.
    */
-  public function saveArtist(array $data) {
+  public function saveArtist(array $data)
+  {
+    // Initialize variables for Media entity.
+    $media_id = null;
+
+    // Check if an image URL ("picture_url") is provided and handle it.
+    if (!empty($data['picture_url'])) {
+      try {
+        // Download the image and save it as a File entity.
+        $file_uri = $this->downloadImage($data['picture_url'], $data['name']);
+        $file = File::create([
+          'uri' => $file_uri,
+          'status' => 1, // Permanent file.
+        ]);
+        $file->save();
+
+        // Create a Media entity of type Image.
+        $media = Media::create([
+          'bundle' => 'image', // Media type: "image".
+          'name' => $data['name'] . ' Image', // A name for the Media entity.
+          'field_media_image' => [
+            'target_id' => $file->id(),
+            'alt' => $data['name'] . ' cover image',
+            'title' => $data['name'] . ' Image',
+          ],
+          'status' => 1, // Published.
+        ]);
+        $media->save();
+
+        // Store the Media entity ID to attach it to the Artist node later.
+        $media_id = $media->id();
+      } catch (\Exception $e) {
+        // Handle errors gracefully and log the issue.
+        \Drupal::messenger()->addError($this->t('An error occurred while processing the image: @error', [
+          '@error' => $e->getMessage(),
+        ]));
+      }
+    }
+
+    // Step 3: Create the Artist node.
     $node = Node::create([
-      'type' => 'artist',
-      'title' => $data['name'], // Use title as the artist name.
-      'field_artist_type' => $data['artist_type'], // List (text) - e.g., "Band", "Solo".
-      'field_date_of_birth' => $data['birth_date'] ?? null, // Date for birth/creation.
-      'field_date_of_death' => $data['death_date'] ?? null, // Date for death/disbanding.
+      'type' => 'artist', // Content type: "Artists".
+      'title' => $data['name'], // Name of the artist.
+      'field_artist_type' => $data['artist_type'], // Artist type (e.g., "Solo", "Band").
+      'field_date_of_birth' => $data['birth_date'] ?? null, // Date of birth/creation.
+      'field_date_of_death' => $data['death_date'] ?? null, // Date of death/disbanding.
       'field_description' => $data['description'] ?? null, // Plain text description.
-      'field_link_to_website' => $data['website'] ?? null, // A link to the artist's website.
-      'field_members' => $data['members'] ?? [], // Entity reference to other artist nodes (e.g., band members).
-      'field_picture' => $data['picture'] ?? null, // Entity reference to a Media entity (image).
+      'field_link_to_website' => $data['website'] ?? null, // Spotify URL for the artist.
+      'field_members' => $data['members'] ?? [], // Members (other Artist references).
+      'field_picture' => $media_id ? ['target_id' => $media_id] : null, // Attach Media entity as Picture.
     ]);
 
     $node->save();
@@ -184,5 +227,92 @@ class MusicSearchService {
    *   'spotify_id' => '123456789',
    * ];
    */
+
+
+  /**
+   * Download an image from a URL and save it in the files directory. (NEW: Function added)
+   *
+   * @param string $url
+   *   The image URL.
+   * @param string $name
+   *   A name for the image file.
+   *
+   * @return string
+   *   The URI of the saved file.
+   */
+//  protected function downloadImage(string $url, string $name): string
+//  {
+//    $date = new \DateTime();
+//    $year = $date->format('Y');
+//    $month = $date->format('m');
+//    $directory = "public://{$year}-{$month}/";
+//
+//    // Ensure the directory exists.
+//    \Drupal::service('file_system')->prepareDirectory(
+//      $directory,
+//      \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY
+//    );
+//
+//    // Define the image filename.
+//    $filename = preg_replace('/[^a-z0-9_\-]/i', '_', $name) . '_cover.jpg';
+//    $file_path = $directory . $filename;
+//
+//    // Download the image and save it locally.
+//    #file_put_contents(drupal_realpath($file_path), file_get_contents($url));
+//    file_put_contents($img, file_get_contents($url));
+//
+//    return $file_path;
+//  }
+
+//  public function downloadImage(string $url, string $name) {
+//    $date = new \DateTime();
+//    $year = $date->format('Y');
+//    $month = $date->format('m');
+//
+//    $img = DRUPAL_ROOT . "/sites/default/files/{$year}-{$month}/{$name}picture.jpg";
+//
+//    // Function to write image into file
+//    file_put_contents($img, file_get_contents($url));
+//
+//    #echo "File downloaded!";
+//
+//  }
+
+  public function downloadImage(string $url, string $name): string {
+    $date = new \DateTime();
+    $year = $date->format('Y');
+    $month = $date->format('m');
+
+    // Set the directory to save images.
+    $directory = "public://{$year}-{$month}/";
+
+    // Prepare the directory (create it if it doesn't exist).
+    \Drupal::service('file_system')->prepareDirectory(
+      $directory,
+      \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY
+    );
+
+    // Define the image filename and path.
+    $filename = preg_replace('/[^a-z0-9_\-]/i', '_', $name) . '_picture.jpg';
+    $file_uri = $directory . $filename;
+
+    // Download the image and save it locally using the resolved real path.
+    try {
+      $image_data = file_get_contents($url); // Get file data from the URL.
+      if ($image_data === false) {
+        throw new \Exception('Unable to download the file.');
+      }
+
+      // Use the file system service to resolve the real file path.
+      $real_path = \Drupal::service('file_system')->realpath($file_uri);
+      file_put_contents($real_path, $image_data);
+
+      // Return the Drupal file URI.
+      return $file_uri;
+    } catch (\Exception $e) {
+      watchdog_exception('music_search', $e);
+      throw new \Exception($this->t('Failed to download the image: @message', ['@message' => $e->getMessage()]));
+    }
+  }
 
 }

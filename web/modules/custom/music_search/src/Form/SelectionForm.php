@@ -75,10 +75,10 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
       // Prepare the artist data for saving.
       $artist_data = [
         'name' => $selected_item->label, // Artist name.
-        'description' => $selected_item->description, // Artist description.
-        'website' => $selected_item->url ?? null, // Website, if available.
-        'picture' => $selected_item->thumb, // Image URL.
-        'artist_type' => 'Solo', // Example static data.
+        'description' => $selected_item->description, // Artist popularity description.
+        'website' => $selected_item->url ?? null, // Website link from Spotify.
+        'picture_url' => $selected_item->thumb, // Spotify image URL (largest size).
+        'artist_type' => 'Solo', // Example static data (can be dynamic if needed).
       ];
 
       // Save the artist using MusicSearchService.
