@@ -73,28 +73,62 @@ class AlbumForm extends FormBase {
   /**
    * {@inheritdoc}
    */
-  public function submitForm(array &$form, FormStateInterface $form_state) {
-    // Extract user input.
-    $album = $form_state->getValue('Album');
-    $artist = $form_state->getValue('Artist');
+public function submitForm(array &$form, FormStateInterface $form_state) {
+  // Extract user input.
+  $album = $form_state->getValue('Album');
+  $artist = $form_state->getValue('Artist');
 
-    // Build the Spotify query.
-    $query = "album:$album artist:$artist";
+  // Build the Spotify query.
+  $query = "album:$album artist:$artist";
 
-    try {
-      // Call SpotifyLookupService to search albums.
-      $results = $this->spotifyService->search($query, 'album');
+  try {
+    // Call SpotifyLookupService to search albums.
+    $results = $this->spotifyService->search($query, 'album');
 
-      // Process and render the results.
-      $render_array = $this->displayResults($results);
-      $rendered_output = $this->renderer->render($render_array);
+    // Process the album results into items compatible with `SelectionForm2`.
+    $items = $this->processAlbums($results);
 
-      // Display rendered output as a status message.
-      \Drupal::messenger()->addStatus($rendered_output);
-    } catch (\Exception $e) {
-      // Handle errors gracefully and inform the user.
-      \Drupal::messenger()->addError($this->t('An error occurred while searching Spotify: @error', ['@error' => $e->getMessage()]));
+    // Store the albums in the session for SelectionForm2.
+    $session = \Drupal::service('session');
+    $session->set('album_selection_items', $items);
+
+    // Redirect to SelectionForm2 to display the album results.
+    $form_state->setRedirect('music_search.select_items2');
+  } catch (\Exception $e) {
+    \Drupal::messenger()->addError($this->t('An error occurred while searching Spotify: @error', ['@error' => $e->getMessage()]));
+  }
+}
+
+  /**
+   * Process Spotify album results into selection items.
+   *
+   * @param array $results
+   *   The results from the Spotify API search for albums.
+   *
+   * @return array
+   *   An array of items suitable for SelectionForm2.
+   */
+  private function processAlbums(array $results): array {
+    $items = [];
+
+    // Loop through the album items from the Spotify search results.
+    if (!empty($results['albums']['items'])) {
+      foreach ($results['albums']['items'] as $item) {
+        $album = new \stdClass();
+        $album->id = $item['id'];
+        $album->label = $item['name']; // Album name.
+        $artist_names = array_map(fn($artist) => $artist['name'], $item['artists']);
+        $album->description = $this->t('By: @artists', ['@artists' => implode(', ', $artist_names)]);
+        $album->value = $item['external_urls']['spotify'] ?? '#'; // Spotify URL for the album.
+        $album->thumb = $item['images'][0]['url'] ?? '#'; // Album cover (thumbnail).
+        $album->alt = $this->t('@album by @artists cover image', ['@album' => $item['name'], '@artists' => implode(', ', $artist_names)]);
+        $album->url = $item['external_urls']['spotify'] ?? '#';
+
+        $items[] = $album; // Add the formatted album data.
+      }
     }
+
+    return $items;
   }
 
   /**
