@@ -78,7 +78,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
         'description' => $selected_item->description, // Artist popularity description.
         'website' => $selected_item->url ?? null, // Website link from Spotify.
         'picture_url' => $selected_item->thumb, // Spotify image URL (largest size).
-        'artist_type' => 'Solo', // Example static data (can be dynamic if needed).
+        #'artist_type' => 'Solo', // Example static data (can be dynamic if needed).
       ];
 
       // Save the artist using MusicSearchService.
