@@ -33,13 +33,25 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
     foreach ($this->items as $item) {
       $form[$item->id] = [
         '#type' => 'container',
+        '#attributes' => [
+          'class' => ['item-container'],
+          'style' => 'border: 1px solid #808080; margin-bottom: 10px; text-align: center;'
+          ],
         'thumb' => [
           '#theme' => 'image',
           '#uri' => $item->thumb,
           '#alt' => $item->alt,
           '#attributes' => [
-            'style' => 'max-width: 300px; max-height: 300px;',
+            'style' => 'display: block; margin: 0 auto; max-width: 300px; max-height: 300px;',
           ],
+        ],
+        'artist_name' => [
+          '#type' => 'markup',
+          '#markup' => '<p><strong>' . $this->t('Artist: @artist', ['@artist' => $item->artists]) . '</strong></p>',
+        ],
+        'release_date' => [
+          '#type' => 'markup',
+          '#markup' => '<p><strong>' . $this->t('Released: @date', ['@date' => $item->release]) . '</strong></p>',
         ],
         'button' => [
           '#type' => 'submit',
@@ -47,6 +59,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
           '#description' => $item->description,
           '#value' => $item->label,
           '#name' => $item->id, // Store the artist's ID here.
+          '#attributes' => [
+            'style' => 'margin-top: -5px;',
+          ]
         ],
       ];
     }
