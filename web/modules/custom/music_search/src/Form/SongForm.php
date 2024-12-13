@@ -90,6 +90,7 @@ class SongForm extends FormBase {
       $track->thumb = $item['album']['images'][0]['url'] ?? '#'; // Album image (thumbnail).
       $track->alt = $this->t('@track by @artists album cover', ['@track' => $item['name'], '@artists' => implode(', ', $artist_names)]);
       $track->url = $item['external_urls']['spotify'] ?? '#';
+      $track->duration = $item['duration_ms'] ?? 'N/A';
 
       $items[] = $track; // Add the formatted track data.
     }
