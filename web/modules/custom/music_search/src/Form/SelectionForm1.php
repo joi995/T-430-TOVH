@@ -33,12 +33,16 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
     foreach ($this->items as $item) {
       $form[$item->id] = [
         '#type' => 'container',
+        '#attributes' => [
+          'class' => ['item-container'],
+          'style' => 'border: 1px solid #808080; margin-bottom: 10px; text-align: center;'
+        ],
         'thumb' => [
           '#theme' => 'image',
           '#uri' => $item->thumb,
           '#alt' => $item->alt,
           '#attributes' => [
-            'style' => 'max-width: 300px; max-height: 300px;',
+            'style' => 'display: block; margin: 0 auto; max-width: 300px; max-height: 300px;',
           ],
         ],
         'button' => [
