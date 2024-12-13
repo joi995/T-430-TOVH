@@ -38,7 +38,8 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
           '#uri' => $item->thumb,
           '#alt' => $item->alt,
           '#attributes' => [
-            'style' => 'max-width: 300px; max-height: 300px;',
+            'class' => ['item-container'],
+            'style' => 'border: 1px solid #808080; margin-bottom: 10px; text-align: center;',
           ],
         ],
         'button' => [
@@ -47,6 +48,9 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
           '#description' => $item->description,
           '#value' => $item->label,
           '#name' => $item->id, // Store the artist's ID here.
+          '#attributes' => [
+            'style' => 'display: block; margin: 0 auto; max-width: 300px; max-height: 300px;',
+          ],
         ],
       ];
     }
@@ -78,7 +82,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
         'description' => $selected_item->description, // Artist popularity description.
         'website' => $selected_item->url ?? null, // Website link from Spotify.
         'picture_url' => $selected_item->thumb, // Spotify image URL (largest size).
-        #'artist_type' => 'Solo', // Example static data (can be dynamic if needed).
+        'artist_type' => 'Individual', // Example static data (can be dynamic if needed).
       ];
 
       // Save the artist using MusicSearchService.
