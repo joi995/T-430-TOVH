@@ -41,36 +41,71 @@ class MusicSearchService {
    *   The ID of the saved album node.
    */
   public function saveAlbum(array $data) {
-    // Create the album node directly using provided data.
+    // Initialize variables for Media entity.
+    $media_id = null;
+
+    // Check if an image URL ("picture_url") is provided for the album cover.
+    if (!empty($data['picture_url'])) {
+      try {
+        // Download the image and save it as a File entity.
+        $file_uri = $this->downloadImage($data['picture_url'], $data['title']);
+        $file = File::create([
+          'uri' => $file_uri,
+          'status' => 1, // Permanent file.
+        ]);
+        $file->save();
+
+        // Create a Media entity of type Image for the album cover.
+        $media = Media::create([
+          'bundle' => 'image', // Media type: "image".
+          'name' => $data['title'] . ' Cover', // A name for the Media entity.
+          'field_media_image' => [
+            'target_id' => $file->id(),
+            'alt' => $data['title'] . ' cover image',
+            'title' => $data['title'] . ' Cover',
+          ],
+          'status' => 1, // Published.
+        ]);
+        $media->save();
+
+        // Store the Media ID to be attached to the album node later.
+        $media_id = $media->id();
+      } catch (\Exception $e) {
+        // Handle errors gracefully and log the issue.
+        \Drupal::messenger()->addError($this->t('An error occurred while processing the album cover: @error', [
+          '@error' => $e->getMessage(),
+        ]));
+      }
+    }
+
+    // Step 3: Create the Album node and attach the Media entity as the album cover.
     $node = Node::create([
-      'type' => 'album',
-      'title' => $data['title'],
+      'type' => 'album', // Content type: "Album".
+      'title' => $data['title'], // Album title.
       'field_artist_s' => $data['artist'], // Multiple artist IDs accepted as an array.
       'field_utgafu_ar' => $data['release_date'], // Release date in proper format ('Y-m-d').
       'body' => $data['description'], // Album description (formatted text).
       'field_publisher' => $data['publisher'] ?? null, // Publisher node ID.
       'field_song_s' => $data['songs'] ?? [], // Array of Song node IDs.
       'field_music_category' => $data['music_category'] ?? null, // Taxonomy term reference for music category.
+      'field_album_cover' => $media_id ? ['target_id' => $media_id] : null, // Attach Media entity as Album Cover.
     ]);
 
     // Save the node and return its ID.
     $node->save();
     return $node->id();
   }
-
-  /*
-   * Example usage:
-   *
-   * $data = [
-   *   'title' => 'Greatest Hits',
-   *   'artist' => [1, 2], // Array of Artist node IDs.
-   *   'release_date' => '2023-11-01', // Release date in proper format ('Y-m-d').
-   *   'description' => 'A special collection of hit songs.', // Album description.
-   *   'publisher' => 5, // Single Publisher node ID.
-   *   'songs' => [10, 11, 12], // Array of Song node IDs.
-   *   'music_category' => 7, // Single taxonomy term ID for music category.
-   * ];
-   */
+// Example usage:
+//  $data = [
+//  'title' => 'Epic Album',
+//  'artist' => [1, 2], // Array of Artist node IDs.
+//  'release_date' => '2023-11-01', // Release date in proper format ('Y-m-d').
+//  'description' => 'This album is a masterpiece of epic proportions.', // Album description.
+//  'publisher' => 5, // Publisher node ID.
+//  'songs' => [10, 11, 12], // Array of Song node IDs.
+//  'music_category' => 8, // Taxonomy term ID for music category.
+//  'picture_url' => 'https://example.com/epic_album_cover.jpg', // URL to the album cover image.
+//  ];
 
   /**
    * Save artist data to a node.
@@ -240,43 +275,7 @@ class MusicSearchService {
    * @return string
    *   The URI of the saved file.
    */
-//  protected function downloadImage(string $url, string $name): string
-//  {
-//    $date = new \DateTime();
-//    $year = $date->format('Y');
-//    $month = $date->format('m');
-//    $directory = "public://{$year}-{$month}/";
-//
-//    // Ensure the directory exists.
-//    \Drupal::service('file_system')->prepareDirectory(
-//      $directory,
-//      \Drupal\Core\File\FileSystemInterface::CREATE_DIRECTORY
-//    );
-//
-//    // Define the image filename.
-//    $filename = preg_replace('/[^a-z0-9_\-]/i', '_', $name) . '_cover.jpg';
-//    $file_path = $directory . $filename;
-//
-//    // Download the image and save it locally.
-//    #file_put_contents(drupal_realpath($file_path), file_get_contents($url));
-//    file_put_contents($img, file_get_contents($url));
-//
-//    return $file_path;
-//  }
 
-//  public function downloadImage(string $url, string $name) {
-//    $date = new \DateTime();
-//    $year = $date->format('Y');
-//    $month = $date->format('m');
-//
-//    $img = DRUPAL_ROOT . "/sites/default/files/{$year}-{$month}/{$name}picture.jpg";
-//
-//    // Function to write image into file
-//    file_put_contents($img, file_get_contents($url));
-//
-//    #echo "File downloaded!";
-//
-//  }
 
   public function downloadImage(string $url, string $name): string {
     $date = new \DateTime();

@@ -93,7 +93,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
         'artist' => $selected_item->artists,
         'description' => $selected_item->description, // Artist description.
         'website' => $selected_item->url ?? null, // Website, if available.
-        'picture' => $selected_item->thumb, // Image URL.
+        'picture_url' => $selected_item->thumb, // Image URL.
         'songs' => $selected_item->songs, // Example static data.
         'release_date' => $selected_item->release,
       ];
