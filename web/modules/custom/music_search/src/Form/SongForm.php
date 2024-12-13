@@ -66,7 +66,7 @@ class SongForm extends FormBase {
 
       // Store the tracks in the session (same as for artists).
       $session = \Drupal::service('session');
-      $session->set('track_selection_items', $items);
+      $session->set('song_selection_items', $items);
 
       // Redirect to SelectionForm to display the tracks.
       $form_state->setRedirect('music_search.select_items1');
