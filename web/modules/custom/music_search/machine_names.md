@@ -33,3 +33,9 @@
     Label: Song on YouTube, Machine name: field_song_on_youtube, Field type: (Video Embed)
     Label: Spotify Embedded, Machine name: field_spotify_embedded, Field type: (Text (formatted) at least 500 characters limit)
     Label: Spotify ID, Machine name: field_spotify_id, Field type: (Text (plain))
+
+## Changing Machine Names
+The machine names are only used in MusicSearchService.php found at: \
+web/modules/custom/music_search/src/MusicSearchService.php \
+If you want to use different machine names then you just need to go in to \
+that file and find our original machine names written above and change them out.
