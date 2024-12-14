@@ -1,4 +1,4 @@
-uuid: 113f4444-0eb5-4f8b-9057-626b4f3901d4
+uuid: acf2aa50-aa49-47a2-8d17-c52065d591dc
 langcode: en
 status: true
 dependencies:
@@ -10,7 +10,7 @@ field_name: field_spotify_embedded
 entity_type: node
 type: text
 settings:
-  max_length: 255
+  max_length: 500
 module: text
 locked: false
 cardinality: 1

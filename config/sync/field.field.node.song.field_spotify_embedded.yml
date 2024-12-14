@@ -1,4 +1,4 @@
-uuid: 4b767b99-a822-4d7c-9de5-a5cf9a87458c
+uuid: 6ab86b3d-20be-4797-a6fe-5fa262ee193b
 langcode: en
 status: true
 dependencies:
@@ -13,7 +13,7 @@ field_name: field_spotify_embedded
 entity_type: node
 bundle: song
 label: 'Spotify Embedded'
-description: "Click 'share' on a Spotify song, and click embedded, and copy that over here."
+description: ''
 required: false
 translatable: false
 default_value: {  }
