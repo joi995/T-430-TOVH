@@ -242,7 +242,7 @@ class MusicSearchService {
       'field_music_category' => $data['music_category'] ?? null, // Taxonomy term for music category.
       'field_song_length' => $data['song_length'] ?? null, // Song length (plain text; e.g., "3:45").
       'field_song_on_youtube' => $data['youtube_url'] ?? null, // YouTube video embed URL.
-      'field_spotify_embedded' => $data['spotify_embedded'] ?? null, // Formatted text for Spotify embed.
+      'field_spotify_embedded' => t('<iframe style="border-radius:12px" src="@uid?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',['@uid' => $data['spotify_embedded']])  ?? null, // Formatted text for Spotify embed.
       'field_spotify_id' => $data['spotify_id'] ?? null, // Plain text for Spotify song ID.
     ]);
 

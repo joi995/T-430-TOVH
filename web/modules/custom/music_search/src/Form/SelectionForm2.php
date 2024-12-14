@@ -141,7 +141,8 @@ use Drupal\spotify_lookup\SpotifyLookupService;
 
   protected function getSpotifyEmbedCode(string $spotifyUri): string {
     $embedUrl = str_replace(':', '/', $spotifyUri); // Convert Spotify URI to embed URL.
-    return 'https://open.spotify.com/embed/' . $embedUrl;
+    $embedUrl = str_replace('spotify', 'embed', $embedUrl); // Convert Spotify URI to embed URL.
+    return 'https://open.spotify.com/' . $embedUrl;
   }
 
 }
