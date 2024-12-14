@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.song.field_song_length
     - field.field.node.song.field_song_on_youtube
     - field.field.node.song.field_spotify_embedded
+    - field.field.node.song.field_spotify_embedded_test
     - field.field.node.song.field_spotify_id
     - node.type.song
     - workflows.workflow.content_approval
@@ -53,6 +54,14 @@ content:
   field_spotify_embedded:
     type: text_textfield
     weight: 27
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_spotify_embedded_test:
+    type: text_textfield
+    weight: 28
     region: content
     settings:
       size: 60

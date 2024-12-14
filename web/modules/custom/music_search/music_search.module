@@ -13,15 +13,25 @@ function music_search_help($route_name, RouteMatchInterface $route_match) {
   switch ($route_name) {
     case 'help.page.music_search':
       $discogs = '<a href="https://www.discogs.com">' . '<img src="https://upload.wikimedia.org/wikipedia/commons/6/69/Discogs_record_icon.svg" alt="spotify logo" width="96"  height="54" />'  . '</a>';
-      $spotify = '<a href="https://open.spotify.com">' . '<img src="https://www.vectorlogo.zone/logos/spotify/spotify-tile.svg" alt="spotify logo" width="96"  height="54" />'  . '</a>';
+      $spotify = '<a href="https://developer.spotify.com/documentation/web-api">' . '<img src="https://www.vectorlogo.zone/logos/spotify/spotify-tile.svg" alt="spotify logo" width="96"  height="54" />'  . '</a>';
       $space = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
       $output = '';
       $output .= '<h3>' . t('Music Search') . '</h3>';
       $output .= '<p>' . t('This is a help page for the module Music Search.') . '</p>';
       $output .= '<p>' . t('Choose between Albums, Artists, and Songs.') . '</p>';
       $output .= '<p>' . t('then use the search bar to find your content on Spotify or Discogs and add it to the Website.') . '</p>';
-      $output .=  '<a href="/apifinder">'. 'Music Search' . '</a>';
+      $output .=  '<a href="/content-creation">'. 'Base Path' . '</a>';
       $output .=  '<p>'. $spotify. $space . $discogs . '</p>';
+      $output .=  '<h3> Spotify API </h3>';
+      $output .=  '<p> Press the spotify logo to go to the developer page</p>';
+      $output .=  '<p> there you can get your API keys on your dashboard </p>';
+      $output .=  '<p> you have to create an app, and select web api </p>';
+      $output .=  '<p> Insert your keys in to web/modules/custom/music_search/modules/spotify_lookup/config/install/spotify_lookup.settings.yml </p>';
+      $output .=  '<h3> Path </h3>';
+      $output .=  '<p> You can change your path names at </p>';
+      $output .=  '<p> web/modules/custom/music_search/music_search.routing.yml </p>';
+
+
 
       return $output;
 
