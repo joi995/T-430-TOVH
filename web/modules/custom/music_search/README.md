@@ -5,6 +5,9 @@ Choose between Albums, Artists, and Songs.
 
 then use the search bar to find your content on Spotify or Discogs and add it to the Website.
 
+Before you publish songs you need to press edit and then press save \
+so that drupal renders the html
+
 Base Path : https://project1.ddev.site/content-creation \
 spotify API : https://developer.spotify.com/documentation/web-api
 

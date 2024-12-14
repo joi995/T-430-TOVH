@@ -20,6 +20,8 @@ function music_search_help($route_name, RouteMatchInterface $route_match) {
       $output .= '<p>' . t('This is a help page for the module Music Search.') . '</p>';
       $output .= '<p>' . t('Choose between Albums, Artists, and Songs.') . '</p>';
       $output .= '<p>' . t('then use the search bar to find your content on Spotify or Discogs and add it to the Website.') . '</p>';
+      $output .= '<p>' . t('Before you publish songs you need to press edit and then press save') . '</p>';
+      $output .= '<p>' . t('so that drupal renders the html') . '</p>';
       $output .=  '<a href="/content-creation">'. 'Base Path' . '</a>';
       $output .=  '<p>'. $spotify. $space . $discogs . '</p>';
       $output .=  '<h3> Spotify API </h3>';
