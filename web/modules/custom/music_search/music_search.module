@@ -26,10 +26,11 @@ function music_search_help($route_name, RouteMatchInterface $route_match) {
       $output .=  '<p> Press the spotify logo to go to the developer page</p>';
       $output .=  '<p> there you can get your API keys on your dashboard </p>';
       $output .=  '<p> you have to create an app, and select web api </p>';
-      $output .=  '<p> Insert your keys in to web/modules/custom/music_search/modules/spotify_lookup/config/install/spotify_lookup.settings.yml </p>';
+      $output .=  '<p> Insert your keys in to </p>';
+      $output .=  '<p> <em>web/modules/custom/music_search/modules/spotify_lookup/config/install/spotify_lookup.settings.yml</em> </p>';
       $output .=  '<h3> Path </h3>';
       $output .=  '<p> You can change your path names at </p>';
-      $output .=  '<p> web/modules/custom/music_search/music_search.routing.yml </p>';
+      $output .=  '<p> <em>web/modules/custom/music_search/music_search.routing.yml</em>  </p>';
 
 
 
