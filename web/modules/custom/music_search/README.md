@@ -16,9 +16,9 @@ there you can get your API keys on your dashboard.
 you have to create an app, and select web api.
 
 Insert your keys in to:
-web/modules/custom/music_search/modules/spotify_lookup/config/install/spotify_lookup.settings.yml
+*web/modules/custom/music_search/modules/spotify_lookup/config/install/spotify_lookup.settings.yml*
 
 ### Path
 You can change your path names at:
 
-web/modules/custom/music_search/music_search.routing.yml
+*web/modules/custom/music_search/music_search.routing.yml*

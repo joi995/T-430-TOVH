@@ -36,6 +36,6 @@
 
 ## Changing Machine Names
 The machine names are only used in MusicSearchService.php found at: \
-web/modules/custom/music_search/src/MusicSearchService.php \
+*web/modules/custom/music_search/src/MusicSearchService.php* \
 If you want to use different machine names then you just need to go in to \
 that file and find our original machine names written above and change them out.
